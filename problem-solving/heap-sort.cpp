@@ -88,8 +88,8 @@ int main() {
 
   time_t t1, t2;
 
-  printf("My heap sort\n");
   initArr(input, 1, N);
+  printf("My heap sort\n");
   t1 = clock();
   createMaxHeap(input, 1, N);
   t2 = clock();
@@ -101,8 +101,8 @@ int main() {
   printf("elapsed time: %.3f\n", (t2 - t1) / 1000.);
   printf("isValid? %d\n\n", validate(input, 1, N));
 
-  printf("Original quick sort in stdlib\n");
   initArr(input, 1, N);
+  printf("Original quick sort in stdlib\n");
   t1 = clock();
   qsort(input + 1, N, sizeof(int), comp);
   t2 = clock();
