@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define N 10000000
+#define N 50000
 
 int input[N];
 
@@ -27,35 +27,21 @@ bool validate(int *arr, int s, int e) {
   return true;
 }
 
-void quickSort(int *arr, int s, int e) {
-  if (s >= e)
-    return;
-
-  int tmp;
-  int pi = (s + e) / 2;
-  int pv = arr[pi];
-
-  tmp = arr[pi];
-  arr[pi] = arr[e];
-  arr[e] = tmp;
-
-  int idx = s;
+void selectionSort(int *arr, int s, int e) {
+  int tmp, min;
   for (int i = s; i < e; i++) {
-    if (arr[i] < pv) {
+    min = i;
+    for (int j = i + 1; j <= e; j++) {
+      if (arr[j] < arr[min])
+        min = j;
+    }
+
+    if (min != i) {
       tmp = arr[i];
-      arr[i] = arr[idx];
-      arr[idx++] = tmp;
+      arr[i] = arr[min];
+      arr[min] = tmp;
     }
   }
-
-  tmp = arr[idx];
-  arr[idx] = arr[e];
-  arr[e] = tmp;
-
-  if (s < idx - 1)
-    quickSort(arr, s, idx - 1);
-  if (idx + 1 < e)
-    quickSort(arr, idx + 1, e);
 }
 
 int comp(const void *a, const void *b) {
@@ -69,9 +55,9 @@ int main() {
   time_t t1, t2;
 
   initArr(input, 0, N - 1);
-  printf("My quick sort\n");
+  printf("My selection sort\n");
   t1 = clock();
-  quickSort(input, 0, N - 1);
+  selectionSort(input, 0, N - 1);
   t2 = clock();
   printf("elapsed time: %.3f\n", (t2 - t1) / 1000.);
   printf("isValid? %d\n\n", validate(input, 0, N - 1));

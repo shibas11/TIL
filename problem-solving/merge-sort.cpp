@@ -75,16 +75,16 @@ int comp(const void *a, const void *b) {
 int main() {
   time_t t1, t2;
 
-  printf("My merge sort\n");
   initArr(input, 0, N - 1);
+  printf("My merge sort\n");
   t1 = clock();
   mergeSort(input, 0, N - 1);
   t2 = clock();
   printf("elapsed time: %.3f\n", (t2 - t1) / 1000.);
   printf("isValid? %d\n\n", validate(input, 0, N - 1));
 
-  printf("Original quick sort in stdlib\n");
   initArr(input, 0, N - 1);
+  printf("Original quick sort in stdlib\n");
   t1 = clock();
   qsort(input, N, sizeof(int), comp);
   t2 = clock();
