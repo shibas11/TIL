@@ -52,6 +52,18 @@ void shellSort(int *arr, int s, int e, int gap) {
   shellSort(arr, s, e, gap);
 }
 
+void shellSort2(int *arr, int s, int e) {
+  int gap = (e - s + 1) / 3 + 1;
+
+  while (gap > 1) {
+    for (int i = 0; i < gap; i++) {
+      insertionSort(arr, i, e, gap);
+    }
+    gap = gap / 3 + 1;
+  }
+  insertionSort(arr, s, e, 1); // gap == 1
+}
+
 int comp(const void *a, const void *b) {
   int *pa = (int *)a;
   int *pb = (int *)b;
@@ -71,9 +83,17 @@ int main() {
   printf("isValid? %d\n\n", validate(input, 0, N - 1));
 
   initArr(input, 0, N - 1);
-  printf("My selection sort\n");
+  printf("My shell sort\n");
   t1 = clock();
   shellSort(input, 0, N - 1, N / 3 + 1);
+  t2 = clock();
+  printf("elapsed time: %.3f\n", (t2 - t1) / 1000.);
+  printf("isValid? %d\n\n", validate(input, 0, N - 1));
+
+ initArr(input, 0, N - 1);
+  printf("My shell sort2\n");
+  t1 = clock();
+  shellSort2(input, 0, N - 1);
   t2 = clock();
   printf("elapsed time: %.3f\n", (t2 - t1) / 1000.);
   printf("isValid? %d\n\n", validate(input, 0, N - 1));
