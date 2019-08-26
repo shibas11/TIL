@@ -9,7 +9,7 @@ int d[MAX_N + 1] = {0, 1, 3};
 int dp_recursion(int n) {
   if (n <= 0)
     return 0;
-  if (d[n] > 0)
+  else if (d[n] > 0)
     return d[n];
 
   int d1 = dp_recursion(n - 1) % MOD;
@@ -21,7 +21,7 @@ int dp_recursion(int n) {
 int dp_interation(int n) {
   if (n <= 0)
     return 0;
-  if (d[n] > 0)
+  else if (d[n] > 0)
     return d[n];
 
   for (int i = 3; i <= n; i++)
