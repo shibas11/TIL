@@ -68,7 +68,7 @@ extern void shellSort(int *list, int s, int e);
 - 데이터 전체 크기만큼의 메모리가 더 필요함
 - 안정 정렬
 
-## 계수 정렬(Counting Sort)
+### 계수 정렬(Counting Sort)
 - O(n + k), k: maximum number
 - 일반적인 상황에서 가장 빠름
 - 메모리 낭비가 심하므로, 숫자들이 특정 범위에 있을 때 사용
