@@ -21,7 +21,6 @@ int main() {
   // freopen("input.txt", "r", stdin);
 
   scanf("%d", &N);
-  printf("%d\n", N);
   printf("%d", dp(N));
   
   return 0;
