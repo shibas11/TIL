@@ -32,20 +32,17 @@ void merge(int *arr, int s1, int e1, int s2, int e2) {
   int left = s1, right = s2;
   int idx = s1;
   while (left <= e1 && right <= e2) {
-    if (arr[left] < arr[right]) {
+    if (arr[left] <= arr[right])
       tmp[idx++] = arr[left++];
-    } else {
+    else
       tmp[idx++] = arr[right++];
-    }
   }
 
-  while (left <= e1) {
+  while (left <= e1)
     tmp[idx++] = arr[left++];
-  }
 
-  while (right <= e2) {
+  while (right <= e2)
     tmp[idx++] = arr[right++];
-  }
 
   for (int i = s1; i <= e2; i++)
     arr[i] = tmp[i];

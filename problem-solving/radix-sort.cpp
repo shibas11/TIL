@@ -1,15 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
-#define N 50000
+#include <queue>
+using namespace std;
+
+#define N 10000000
+#define K 10
+#define P 3
 
 int input[N];
 
 void initArr(int *arr, int s, int e) {
   srand(time(NULL));
+  int p = pow(K, P - 1);
   for (int i = 0; i < N; i++)
-    arr[i] = rand() % N;
+    arr[i] = rand() % p;
 }
 
 void printArr(int *arr, int s, int e) {
@@ -27,16 +34,23 @@ bool validate(int *arr, int s, int e) {
   return true;
 }
 
-void insertionSort(int *arr, int s, int e) {
-  int tmp, val, j;
-  for (int i = s + 1; i <= e; i++) {
-    val = arr[i];
-    for (j = i - 1; j >= s; j--) {
-      if (arr[j] <= val)
-        break;
-      arr[j + 1] = arr[j];
+queue<int> que[K];
+void radixSort(int *arr, int s, int e, int p) {
+  int pow = 1, idx;
+
+  for (int i = 1; i <= p; i++) {
+    for (int j = 0; j < N; j++) {
+      que[arr[j] / pow % K].push(arr[j]);
     }
-    arr[j + 1] = val;
+
+    idx = 0;
+    for (int j = 0; j < K; j++) {
+      while (!que[j].empty()) {
+        arr[idx++] = que[j].front();
+        que[j].pop();
+      }
+    }
+    pow *= K;
   }
 }
 
@@ -51,9 +65,9 @@ int main() {
   time_t t1, t2;
 
   initArr(input, 0, N - 1);
-  printf("My insertion sort\n");
+  printf("My radix sort\n");
   t1 = clock();
-  insertionSort(input, 0, N - 1);
+  radixSort(input, 0, N - 1, P);
   t2 = clock();
   printf("elapsed time: %.3f\n", (t2 - t1) / 1000.);
   printf("isValid? %d\n\n", validate(input, 0, N - 1));

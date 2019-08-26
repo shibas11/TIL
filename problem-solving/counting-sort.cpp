@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
-#define N 50000
+#define N 10000000
 
 int input[N];
 
@@ -27,17 +28,23 @@ bool validate(int *arr, int s, int e) {
   return true;
 }
 
-void insertionSort(int *arr, int s, int e) {
-  int tmp, val, j;
-  for (int i = s + 1; i <= e; i++) {
-    val = arr[i];
-    for (j = i - 1; j >= s; j--) {
-      if (arr[j] <= val)
-        break;
-      arr[j + 1] = arr[j];
-    }
-    arr[j + 1] = val;
+int count[N];
+int tmp[N];
+void countingSort(int *arr, int s, int e) {
+  // count[e] = e; // for the test
+  memset(count + s, 0, sizeof(int) * (e - s + 1));
+
+  for (int i = s; i <= e; i++)
+    count[arr[i]]++;
+  for (int i = s + 1; i <= e; i++)
+    count[i] += count[i - 1];
+
+  for (int i = e; i >= s; i--) { // from the last
+    tmp[--count[arr[i]]] = arr[i];
   }
+
+  for (int i = s; i <= e; i++)
+    arr[i] = tmp[i];
 }
 
 int comp(const void *a, const void *b) {
@@ -51,9 +58,9 @@ int main() {
   time_t t1, t2;
 
   initArr(input, 0, N - 1);
-  printf("My insertion sort\n");
+  printf("My counting sort\n");
   t1 = clock();
-  insertionSort(input, 0, N - 1);
+  countingSort(input, 0, N - 1);
   t2 = clock();
   printf("elapsed time: %.3f\n", (t2 - t1) / 1000.);
   printf("isValid? %d\n\n", validate(input, 0, N - 1));
