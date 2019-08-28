@@ -53,8 +53,7 @@ int main() {
   // freopen("acmicpc/1976-union-find.txt", "r", stdin);
   setbuf(stdout, NULL);
 
-  scanf("%d", &N);
-  scanf("%d", &M);
+  scanf("%d", &N, &M);
   initArr(N, M);
 
   for (int i = 1; i <= N; i++) {
