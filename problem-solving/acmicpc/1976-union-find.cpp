@@ -13,18 +13,15 @@ int N, M;
 
 void initArr(int size, int querySize) {
   for (int i = 1; i <= size; i++) {
-    for (int j = 1; j <= size; j++) {
+    for (int j = 1; j <= size; j++)
       scanf("%d", &input[i][j]);
-    }
 
-    city[i] = i;
-    id[i] = i;
+    city[i] = id[i] = i;
     lv[i] = 1;
   }
 
-  for (int i = 0; i < querySize; i++) {
+  for (int i = 0; i < querySize; i++)
     scanf("%d", &query[i]);
-  }
 }
 
 int root(int p) {
