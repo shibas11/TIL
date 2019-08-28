@@ -11,7 +11,7 @@
         "-g",
         "${file}",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}"
+        "${fileDirname}/output"
       ],
       "options": {
         "cwd": "/usr/bin"
