@@ -25,7 +25,7 @@ void printArr(int r, int c) {
 }
 
 int main() {
-  // freopen("input.txt", "r", stdin);
+  // freopen("jungol/1078-bfs.txt", "r", stdin);
 
   scanf("%d %d", &COL, &ROW);
   for (int i = 0; i < ROW; i++) {
