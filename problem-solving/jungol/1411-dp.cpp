@@ -31,9 +31,10 @@ int dp_interation(int n) {
 }
 
 int main() {
-  // freopen("input.txt", "r", stdin);
+  // freopen("jungol/1411-dp.txt", "r", stdin);
 
   scanf("%d", &N);
+  // printf("%d", dp_recursion(N));
   printf("%d", dp_interation(N));
 
   return 0;
