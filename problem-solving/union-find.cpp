@@ -38,7 +38,6 @@ void unionFunc(int p, int q) {
 }
 
 void initArr(int size) {
-  srand(time(NULL));
   for (int i = 0; i < size; i++) {
     input[i] = i;
     id[i] = i;
