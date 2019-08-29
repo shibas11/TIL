@@ -11,8 +11,10 @@ int id[MAX_N];
 int lv[MAX_N];
 
 int root(int p) {
-  while (p != id[p])
+  while (p != id[p]) {
+    id[p] = id[id[p]]; // path compression
     p = id[p];
+  }
 
   return p;
 }
