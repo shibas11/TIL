@@ -18,7 +18,7 @@ int dp_recursion(int n) {
   return d[n] = (d1 + 2 * d2) % MOD;
 }
 
-int dp_interation(int n) {
+int dp_iteration(int n) {
   if (n <= 0)
     return 0;
   else if (d[n] > 0)
@@ -35,7 +35,7 @@ int main() {
 
   scanf("%d", &N);
   // printf("%d", dp_recursion(N));
-  printf("%d", dp_interation(N));
+  printf("%d", dp_iteration(N));
 
   return 0;
 }
