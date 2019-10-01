@@ -4,34 +4,27 @@
 #define MAX_C 100
 
 int C, N, L;
-int input[MAX_N];
-int d[MAX_N][MAX_N];
+int input[MAX_N + 1] = {0};
+int d[MAX_N + 1];
 float tmp;
 
 int main() {
-//   freopen("algospot/FESTIVAL.txt", "r", stdin);
-
+  freopen("algospot/FESTIVAL.txt", "r", stdin);
   double answer, tmp;
 
   scanf("%d", &C);
-  for (int c = 0; c < C; c++) {
+  while (C--) {
     answer = 100000;
 
     scanf("%d %d", &N, &L);
-    for (int i = 0; i < N; i++) {
+    for (int i = 1; i <= N; i++) {
       scanf("%d", input + i);
-      d[i][i] = input[i];
+      d[i] = d[i - 1] + input[i];
     }
 
-    for (int i = 0; i < N; i++) {
-      for (int j = i + 1; j < N; j++) {
-        d[i][j] = d[i][j - 1] + input[j];
-      }
-    }
-
-    for (int i = 0; i <= N - L; i++) {
-      for (int j = i + L - 1; j < N; j++) {
-        tmp = (double)d[i][j] / (j - i + 1);
+    for (int i = 1; i <= N - L + 1; i++) {
+      for (int j = i + L - 1; j <= N; j++) {
+        tmp = (double)(d[j] - d[i] + input[i]) / (j - i + 1);
         answer = tmp < answer ? tmp : answer;
       }
     }
