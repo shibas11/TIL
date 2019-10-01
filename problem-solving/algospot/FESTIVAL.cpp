@@ -4,8 +4,8 @@
 #define MAX_C 100
 
 int C, N, L;
-int input[MAX_N + 1] = {0};
-int d[MAX_N + 1];
+int input[MAX_N + 1];
+int d[MAX_N + 1] = {0};
 float tmp;
 
 int main() {
@@ -18,7 +18,7 @@ int main() {
 
     scanf("%d %d", &N, &L);
     for (int i = 1; i <= N; i++) {
-      scanf("%d", input + i);
+      scanf("%d", &input[i]);
       d[i] = d[i - 1] + input[i];
     }
 

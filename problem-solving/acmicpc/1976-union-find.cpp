@@ -52,7 +52,7 @@ void unionFunc(int p, int q) {
 }
 
 int main() {
-  // freopen("acmicpc/1976-union-find.txt", "r", stdin);
+  freopen("acmicpc/1976-union-find.txt", "r", stdin);
   setbuf(stdout, NULL);
 
   scanf("%d", &N, &M);
