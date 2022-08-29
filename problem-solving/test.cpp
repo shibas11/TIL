@@ -46,6 +46,14 @@ void printArray(int s, int e, char* title = NULL, int gap = 1) {
   printf("\n");
 }
 
+bool validate(int s, int e) {
+  for (int i = s; i < e - 1; i++) {
+    if (input[i] > input[i + 1])
+      return false;
+  }
+  return true;
+}
+
 void bubbleSort(int s, int e) {
   int tmp = -1, w = 0;
   for (int j = s; j < e; j++) {
@@ -140,6 +148,7 @@ void shellSort(int s, int e) {
 
 }
 
+char str[40];
 void quickSort(int s, int e) {
   if (s >= e) return; // 유효범위 체크
 
@@ -167,8 +176,8 @@ void quickSort(int s, int e) {
   input[leftIdx] = input[e - 1];
   input[e - 1] = tmp;
 
-  quickSort(s, pi - 1); // 좌측 부분집합. 유효한 범위인지는 quickSort 함수 내에서 체크함
-  quickSort(pi + 1, e); // 우측 부분집합. 유효한 범위인지는 quickSort 함수 내에서 체크함
+  quickSort(s, leftIdx);     // 좌측 부분집합. 유효한 범위인지는 quickSort 함수 내에서 체크함
+  quickSort(leftIdx + 1, e); // 우측 부분집합. 유효한 범위인지는 quickSort 함수 내에서 체크함
 }
 
 int main() {
@@ -195,7 +204,7 @@ int main() {
   bubbleSort(s, e);
   t2 = clock();
   printArray(0, e);
-  printf("\n버블 정렬 걸린시간: %f\n", (t2 - t) / 1000.);
+  printf("\n%d 버블 정렬 걸린시간: %f\n", validate(s, e), (t2 - t) / 1000.);
 
   randomizeArray(0, e);
   // printArray(0, e);
@@ -203,7 +212,7 @@ int main() {
   selectionSort(s, e);
   t2 = clock();
   printArray(0, e);
-  printf("\n선택 정렬 걸린시간: %f\n", (t2 - t) / 1000.);
+  printf("\n%d 선택 정렬 걸린시간: %f\n", validate(s, e), (t2 - t) / 1000.);
 
   randomizeArray(0, e);
   // printArray(0, e);
@@ -211,7 +220,7 @@ int main() {
   insertionSort(s, e);
   t2 = clock();
   printArray(0, e);
-  printf("\n삽입 정렬 걸린시간: %f\n", (t2 - t) / 1000.);
+  printf("\n%d 삽입 정렬 걸린시간: %f\n", validate(s, e), (t2 - t) / 1000.);
 
   randomizeArray(0, e);
   // printArray(0, e);
@@ -219,15 +228,15 @@ int main() {
   shellSort(s, e);
   t2 = clock();
   printArray(0, e);
-  printf("\n 쉘  정렬 걸린시간: %f\n", (t2 - t) / 1000.);
+  printf("\n%d  쉘  정렬 걸린시간: %f\n", validate(s, e), (t2 - t) / 1000.);
 
   randomizeArray(0, e);
-  // printArray(0, e);
+  printArray(0, e);
   t = clock();
-  shellSort(s, e);
+  quickSort(s, e);
   t2 = clock();
   printArray(0, e);
-  printf("\n 퀵  정렬 걸린시간: %f\n", (t2 - t) / 1000.);
+  printf("\n%d  퀵  정렬 걸린시간: %f\n", validate(s, e), (t2 - t) / 1000.);
 
   return 0;
 }
